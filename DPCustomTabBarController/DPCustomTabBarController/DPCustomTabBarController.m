@@ -82,6 +82,6 @@
 #pragma mark - Button Actions
 
 -(void)tabbarButtonPressed:(UIButton*)sender{
-    
+    [self setSelectedIndex:sender.tag];
 }
 @end
