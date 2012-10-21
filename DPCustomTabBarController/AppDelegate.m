@@ -7,14 +7,30 @@
 //
 
 #import "AppDelegate.h"
+#import "FirstViewController.h"
+#import "SecondViewController.h"
+#import "DPCustomTabBarController.h"
+
+@interface AppDelegate ()<DPCustomTabBarControllerDelegate>
+
+@end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    FirstViewController *firstVC=[[FirstViewController alloc]init];
+    SecondViewController *secondVC=[[SecondViewController alloc]init];
+    
+    DPCustomTabBarController *customTabBarContr=[[DPCustomTabBarController alloc]init];
+    [customTabBarContr setCustomTabBarDelegate:self];
+
+    [customTabBarContr setViewControllers:[NSArray arrayWithObjects:firstVC,secondVC, nil]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    [self.window setRootViewController:customTabBarContr ];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -46,4 +62,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - DPCustomTabBarControllerDelegate
+
+-(UIView*)backgroundViewForCustomTabBarController:(DPCustomTabBarController *)customTabBarContr{
+    UIView *backgroundView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 50)];
+    [backgroundView setBackgroundColor:[UIColor redColor]];
+    
+    return backgroundView;
+}
+-(UIButton*)customTabBarController:(DPCustomTabBarController *)customTabBarContr buttonAtIndex:(NSInteger)index{
+    UIButton *btn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn setTitle:[NSString stringWithFormat:@"%d",index] forState:UIControlStateNormal];
+    [btn setFrame:CGRectMake(0, 0, 50, 50)];
+
+    return btn;
+}
 @end
