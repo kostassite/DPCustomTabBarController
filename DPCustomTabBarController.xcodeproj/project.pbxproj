@@ -16,6 +16,11 @@
 		2E1CD4F6163487A900EF5692 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1CD4F5163487A900EF5692 /* Default.png */; };
 		2E1CD4F8163487A900EF5692 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1CD4F7163487A900EF5692 /* Default@2x.png */; };
 		2E1CD4FA163487A900EF5692 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1CD4F9163487A900EF5692 /* Default-568h@2x.png */; };
+		2E1CD503163489FE00EF5692 /* DPCustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1CD502163489FE00EF5692 /* DPCustomTabBarController.m */; };
+		2E1CD50716348A1900EF5692 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1CD50516348A1900EF5692 /* FirstViewController.m */; };
+		2E1CD50816348A1900EF5692 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1CD50616348A1900EF5692 /* FirstViewController.xib */; };
+		2E1CD50C16348A3B00EF5692 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1CD50A16348A3B00EF5692 /* SecondViewController.m */; };
+		2E1CD50D16348A3B00EF5692 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1CD50B16348A3B00EF5692 /* SecondViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,14 @@
 		2E1CD4F5163487A900EF5692 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2E1CD4F7163487A900EF5692 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2E1CD4F9163487A900EF5692 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2E1CD501163489FE00EF5692 /* DPCustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCustomTabBarController.h; sourceTree = "<group>"; };
+		2E1CD502163489FE00EF5692 /* DPCustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCustomTabBarController.m; sourceTree = "<group>"; };
+		2E1CD50416348A1900EF5692 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		2E1CD50516348A1900EF5692 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		2E1CD50616348A1900EF5692 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		2E1CD50916348A3B00EF5692 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		2E1CD50A16348A3B00EF5692 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		2E1CD50B16348A3B00EF5692 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +93,13 @@
 			children = (
 				2E1CD4F2163487A900EF5692 /* AppDelegate.h */,
 				2E1CD4F3163487A900EF5692 /* AppDelegate.m */,
+				2E1CD50416348A1900EF5692 /* FirstViewController.h */,
+				2E1CD50516348A1900EF5692 /* FirstViewController.m */,
+				2E1CD50616348A1900EF5692 /* FirstViewController.xib */,
+				2E1CD50916348A3B00EF5692 /* SecondViewController.h */,
+				2E1CD50A16348A3B00EF5692 /* SecondViewController.m */,
+				2E1CD50B16348A3B00EF5692 /* SecondViewController.xib */,
+				2E1CD500163489CB00EF5692 /* DPCustomTabBarController */,
 				2E1CD4EA163487A900EF5692 /* Supporting Files */,
 			);
 			path = DPCustomTabBarController;
@@ -97,6 +117,15 @@
 				2E1CD4F9163487A900EF5692 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2E1CD500163489CB00EF5692 /* DPCustomTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				2E1CD501163489FE00EF5692 /* DPCustomTabBarController.h */,
+				2E1CD502163489FE00EF5692 /* DPCustomTabBarController.m */,
+			);
+			path = DPCustomTabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +183,8 @@
 				2E1CD4F6163487A900EF5692 /* Default.png in Resources */,
 				2E1CD4F8163487A900EF5692 /* Default@2x.png in Resources */,
 				2E1CD4FA163487A900EF5692 /* Default-568h@2x.png in Resources */,
+				2E1CD50816348A1900EF5692 /* FirstViewController.xib in Resources */,
+				2E1CD50D16348A3B00EF5692 /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +197,9 @@
 			files = (
 				2E1CD4F0163487A900EF5692 /* main.m in Sources */,
 				2E1CD4F4163487A900EF5692 /* AppDelegate.m in Sources */,
+				2E1CD503163489FE00EF5692 /* DPCustomTabBarController.m in Sources */,
+				2E1CD50716348A1900EF5692 /* FirstViewController.m in Sources */,
+				2E1CD50C16348A3B00EF5692 /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
