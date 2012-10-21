@@ -73,6 +73,8 @@
 -(UIButton*)customTabBarController:(DPCustomTabBarController *)customTabBarContr buttonAtIndex:(NSInteger)index{
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [btn setTitle:[NSString stringWithFormat:@"%d",index] forState:UIControlStateNormal];
+        [btn setTitle:[NSString stringWithFormat:@"S%d",index] forState:UIControlStateHighlighted];
+    
     [btn setFrame:CGRectMake(0, 0, 50, 50)];
 
     return btn;

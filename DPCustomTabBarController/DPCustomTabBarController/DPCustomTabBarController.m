@@ -67,8 +67,11 @@
     NSInteger previousButtonXEnd = 0;
     for (int i=0; i<numberOfViewController; i++) {
         UIButton *btn=[self.customTabBarDelegate customTabBarController:self buttonAtIndex:i];
-        btn.tag=i;
+        btn.tag=10+i;
+        
         [btn addTarget:self action:@selector(tabbarButtonPressed:) forControlEvents:UIControlEventTouchDown];
+        [btn addTarget:self action:@selector(setButtonHighlighted:) forControlEvents:UIControlEventTouchUpInside];
+        
         CGRect oldFrame=btn.frame;
         oldFrame.origin.x=previousButtonXEnd;
         [btn setFrame:oldFrame];
@@ -79,9 +82,21 @@
     
 }
 
-#pragma mark - Button Actions
+#pragma mark - Button Methods
 
 -(void)tabbarButtonPressed:(UIButton*)sender{
-    [self setSelectedIndex:sender.tag];
+    if (self.selectedIndex!=sender.tag-10) {
+        [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:NO];
+    }
+
+    [self setSelectedIndex:sender.tag-10];
+}
+
+-(void)setButtonHighlighted:(UIButton*)sender{
+    [self performSelector:@selector(doHighlight:) withObject:sender afterDelay:0];
+}
+
+-(void)doHighlight:(UIButton*)sender{
+    [sender setHighlighted:YES];
 }
 @end
