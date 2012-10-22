@@ -13,7 +13,11 @@
 
 @required
 -(UIView*)backgroundViewForCustomTabBarController:(DPCustomTabBarController*)customTabBarContr;
+
+@optional
 -(UIButton*)customTabBarController:(DPCustomTabBarController*)customTabBarContr buttonAtIndex:(NSInteger)index;
+-(NSInteger)customTabBarController:(DPCustomTabBarController*)customTabBarContr tagOfButtonInBackgoundForButtonAtIndex:(NSInteger)index;
+
 
 @end
 

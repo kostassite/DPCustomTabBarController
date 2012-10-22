@@ -66,17 +66,24 @@
     NSInteger numberOfViewController = [[self viewControllers] count];
     NSInteger previousButtonXEnd = 0;
     for (int i=0; i<numberOfViewController; i++) {
-        UIButton *btn=[self.customTabBarDelegate customTabBarController:self buttonAtIndex:i];
+        UIButton *btn;
+        if ([self.customTabBarDelegate respondsToSelector:@selector(customTabBarController:tagOfButtonInBackgoundForButtonAtIndex:)]){
+            btn=(UIButton*) [tabbarBackgroundView viewWithTag:[self.customTabBarDelegate customTabBarController:self tagOfButtonInBackgoundForButtonAtIndex:i]];
+        }else{
+            btn=[self.customTabBarDelegate customTabBarController:self buttonAtIndex:i];
+            CGRect oldFrame=btn.frame;
+            oldFrame.origin.x=previousButtonXEnd;
+            [btn setFrame:oldFrame];
+            
+            previousButtonXEnd+=btn.frame.size.width;
+        }
+
         btn.tag=10+i;
         
         [btn addTarget:self action:@selector(tabbarButtonPressed:) forControlEvents:UIControlEventTouchDown];
         [btn addTarget:self action:@selector(setButtonHighlighted:) forControlEvents:UIControlEventTouchUpInside];
         
-        CGRect oldFrame=btn.frame;
-        oldFrame.origin.x=previousButtonXEnd;
-        [btn setFrame:oldFrame];
-        
-        previousButtonXEnd+=btn.frame.size.width;
+
         [tabbarBackgroundView addSubview:btn];
     }
     
