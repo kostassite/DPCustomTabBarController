@@ -50,7 +50,15 @@
 #pragma mark - Create Custom TabBar
 
 -(void)removeDefaultTabBar{
+    
     [self.tabBar removeFromSuperview];
+    
+    //Just In case apple change the private API of UITabBarController
+    if ([self.view.subviews count] != 1 )
+		return;
+    
+    UIView *contentView = [self.view.subviews objectAtIndex:0];
+    [contentView setFrame:self.view.bounds];
 }
 
 -(void)addBackgroundView{
@@ -59,6 +67,7 @@
     oldFrame.origin.x=(self.view.frame.size.width - oldFrame.size.width) / 2;
     oldFrame.origin.y=self.view.frame.size.height-oldFrame.size.height;
     [tabbarBackgroundView setFrame:oldFrame];
+    
     [self.view addSubview:tabbarBackgroundView];
 }
 
