@@ -40,6 +40,9 @@
     [self removeDefaultTabBar];
     [self addBackgroundView];
     [self addTabBarButtons];
+
+    [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:YES];
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -115,4 +118,5 @@
 -(void)doHighlight:(UIButton*)sender{
     [sender setHighlighted:YES];
 }
+
 @end
