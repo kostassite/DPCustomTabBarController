@@ -104,15 +104,28 @@
 #pragma mark - Button Methods
 
 -(void)tabbarButtonPressed:(UIButton*)sender{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) {
+        if (![self.delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:sender.tag-10]]) {
+            return;
+        }
+    }
+    
     if (self.selectedIndex!=sender.tag-10) {
         [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:NO];
     }
 
     [self setSelectedIndex:sender.tag-10];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
+        [self.delegate tabBarController:self didSelectViewController:[self.viewControllers objectAtIndex:sender.tag-10]];
+    }
+    
 }
 
 -(void)setButtonHighlighted:(UIButton*)sender{
-    [self performSelector:@selector(doHighlight:) withObject:sender afterDelay:0];
+    if (self.selectedIndex==sender.tag-10) {
+        [self performSelector:@selector(doHighlight:) withObject:sender afterDelay:0];
+    }
 }
 
 -(void)doHighlight:(UIButton*)sender{
