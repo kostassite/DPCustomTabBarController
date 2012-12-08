@@ -23,5 +23,6 @@
 
 @interface DPCustomTabBarController : UITabBarController
 
+-(void)deselectAllTabs;
 @property (nonatomic,weak) id<DPCustomTabBarControllerDelegate> customTabBarDelegate;
 @end

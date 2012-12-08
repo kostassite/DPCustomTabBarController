@@ -132,4 +132,8 @@
     [sender setHighlighted:YES];
 }
 
+-(void)deselectAllTabs{
+    [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:NO];
+}
+
 @end
