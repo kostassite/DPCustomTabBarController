@@ -68,7 +68,7 @@
     tabbarBackgroundView = [self.customTabBarDelegate backgroundViewForCustomTabBarController:self];
     CGRect oldFrame=tabbarBackgroundView.frame;
     oldFrame.origin.x=(self.view.frame.size.width - oldFrame.size.width) / 2;
-    oldFrame.origin.y=self.view.frame.size.height-oldFrame.size.height;
+    oldFrame.origin.y=self.view.bounds.size.height-oldFrame.size.height-20;
     [tabbarBackgroundView setFrame:oldFrame];
     
     [self.view addSubview:tabbarBackgroundView];
