@@ -10,6 +10,7 @@
 
 @interface DPCustomTabBarController (){
     UIView *tabbarBackgroundView;
+    BOOL loaded;
 }
 
 @end
@@ -29,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    loaded=NO;
     
 	// Do any additional setup after loading the view.
 }
@@ -37,10 +38,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    [self removeDefaultTabBar];
-    [self addBackgroundView];
-    [self addTabBarButtons];
-
+    if (!loaded) {
+        [self removeDefaultTabBar];
+        [self addBackgroundView];
+        [self addTabBarButtons];
+        loaded=YES;
+    }
     [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:YES];
 
 }
