@@ -24,5 +24,7 @@
 @interface DPCustomTabBarController : UITabBarController
 
 -(void)deselectAllTabs;
+-(void)deselectTabAtIndex:(NSInteger)index;
+
 @property (nonatomic,weak) id<DPCustomTabBarControllerDelegate> customTabBarDelegate;
 @end

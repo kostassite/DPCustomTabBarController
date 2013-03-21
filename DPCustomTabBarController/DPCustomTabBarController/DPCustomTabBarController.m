@@ -139,4 +139,9 @@
     [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:NO];
 }
 
+-(void)deselectTabAtIndex:(NSInteger)index{
+    [(UIButton*)[ tabbarBackgroundView viewWithTag:10+index] setHighlighted:NO];
+    [(UIButton*)[ tabbarBackgroundView viewWithTag:10+index] setSelected:NO];
+}
+
 @end
