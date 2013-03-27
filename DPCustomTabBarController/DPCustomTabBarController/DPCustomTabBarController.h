@@ -25,6 +25,7 @@
 
 -(void)deselectAllTabs;
 -(void)deselectTabAtIndex:(NSInteger)index;
+-(void)selectTabAtIndex:(NSInteger)index;
 
 @property (nonatomic,weak) id<DPCustomTabBarControllerDelegate> customTabBarDelegate;
 @end
