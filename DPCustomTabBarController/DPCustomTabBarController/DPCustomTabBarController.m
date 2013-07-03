@@ -7,6 +7,7 @@
 //
 
 #import "DPCustomTabBarController.h"
+#import "AppDelegate.h"
 
 @interface DPCustomTabBarController (){
     UIView *tabbarBackgroundView;
@@ -68,10 +69,12 @@
 }
 
 -(void)addBackgroundView{
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
     tabbarBackgroundView = [self.customTabBarDelegate backgroundViewForCustomTabBarController:self];
     CGRect oldFrame=tabbarBackgroundView.frame;
     oldFrame.origin.x=(self.view.frame.size.width - oldFrame.size.width) / 2;
-    oldFrame.origin.y=self.view.bounds.size.height-oldFrame.size.height-20;
+    oldFrame.origin.y=deleg.window.bounds.size.height-oldFrame.size.height;
     [tabbarBackgroundView setFrame:oldFrame];
     
     [self.view addSubview:tabbarBackgroundView];
