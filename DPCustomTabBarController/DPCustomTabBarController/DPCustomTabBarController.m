@@ -63,9 +63,7 @@
     //Just In case apple change the private API of UITabBarController
     if ([self.view.subviews count] != 1 )
 		return;
-    
-    UIView *contentView = [self.view.subviews objectAtIndex:0];
-    [contentView setFrame:self.view.bounds];
+
 }
 
 -(void)addBackgroundView{
@@ -76,6 +74,11 @@
     oldFrame.origin.x=(self.view.frame.size.width - oldFrame.size.width) / 2;
     oldFrame.origin.y=deleg.window.bounds.size.height-oldFrame.size.height;
     [tabbarBackgroundView setFrame:oldFrame];
+    
+    UIView *contentView = [self.view.subviews objectAtIndex:0];
+    oldFrame = self.view.bounds;
+    oldFrame.size.height -= tabbarBackgroundView.frame.size.height;
+    [contentView setFrame:oldFrame];
     
     [self.view addSubview:tabbarBackgroundView];
 }
