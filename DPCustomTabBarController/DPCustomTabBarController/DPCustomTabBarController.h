@@ -27,5 +27,10 @@
 -(void)deselectTabAtIndex:(NSInteger)index;
 -(void)selectTabAtIndex:(NSInteger)index;
 
+-(void)hideTabbar;
+-(void)showTabbar;
+
+-(UIView*)tabbarBackgroundView;
+
 @property (nonatomic,weak) id<DPCustomTabBarControllerDelegate> customTabBarDelegate;
 @end
