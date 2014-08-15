@@ -157,6 +157,21 @@
     }];
 }
 
+-(void)setHeight:(NSInteger)height{
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+height);
+}
+
+-(void)endScroll{
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+
+    if (self.view.frame.size.height<deleg.window.bounds.size.height+23) {
+        [self showTabbar];
+    }else{
+        [self hideTabbar];
+    }
+}
+
 #pragma mark - Button Methods
 
 -(void)tabbarButtonPressed:(UIButton*)sender{

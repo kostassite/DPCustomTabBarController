@@ -29,6 +29,8 @@
 
 -(void)hideTabbar;
 -(void)showTabbar;
+-(void)setHeight:(NSInteger)height;
+-(void)endScroll;
 
 -(UIView*)tabbarBackgroundView;
 
