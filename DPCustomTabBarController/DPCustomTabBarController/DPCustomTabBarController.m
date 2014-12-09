@@ -12,12 +12,18 @@
 @interface DPCustomTabBarController (){
     UIView *tabbarBackgroundView;
     BOOL loaded;
+    
+    BOOL inAnimation;
 }
 
 @end
 
 @implementation DPCustomTabBarController
 @synthesize customTabBarDelegate;
+
+-(UIView*)tabbarBackgroundView{
+    return tabbarBackgroundView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,12 +82,21 @@
     oldFrame.size.width = self.view.frame.size.width;
     [tabbarBackgroundView setFrame:oldFrame];
     
-    UIView *contentView = [self.view.subviews objectAtIndex:0];
-    oldFrame = self.view.bounds;
-    oldFrame.size.height -= tabbarBackgroundView.frame.size.height;
-    [contentView setFrame:oldFrame];
-    
+    [tabbarBackgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:tabbarBackgroundView];
+
+    
+    NSLayoutConstraint *heightConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:46];
+    NSLayoutConstraint *bottomConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+
+    [self.view addConstraint:heightConst];
+    [self.view addConstraint:bottomConst];
+    
+    NSLayoutConstraint *widthConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    NSLayoutConstraint *centerConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+    
+    [self.view addConstraint:widthConst];
+    [self.view addConstraint:centerConst];
 }
 
 -(void)addTabBarButtons{
@@ -109,6 +124,53 @@
         [tabbarBackgroundView addSubview:btn];
     }
     
+}
+
+#pragma mark - Hide Show
+
+-(void)hideTabbar{
+    if (inAnimation) {
+        return;
+    }
+    inAnimation = YES;
+    
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+46);
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }completion:^(BOOL finished) {
+        inAnimation = NO;
+    }];
+}
+
+-(void)showTabbar{
+    if (inAnimation) {
+        return;
+    }
+    inAnimation = YES;
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height);
+
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.view layoutIfNeeded];
+    }completion:^(BOOL finished) {
+        inAnimation = NO;
+    }];
+}
+
+-(void)setHeight:(NSInteger)height{
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+height);
+}
+
+-(void)endScroll{
+    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
+
+    if (self.view.frame.size.height<deleg.window.bounds.size.height+23) {
+        [self showTabbar];
+    }else{
+        [self hideTabbar];
+    }
 }
 
 #pragma mark - Button Methods
