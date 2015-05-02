@@ -205,7 +205,10 @@
 }
 
 -(void)deselectAllTabs{
-    [(UIButton*)[ tabbarBackgroundView viewWithTag:10+self.selectedIndex] setHighlighted:NO];
+    NSInteger numberOfViewController = [[self viewControllers] count];
+    for (int i=0; i<numberOfViewController; i++) {
+        [self deselectTabAtIndex:i];
+    }
 }
 
 -(void)deselectTabAtIndex:(NSInteger)index{
