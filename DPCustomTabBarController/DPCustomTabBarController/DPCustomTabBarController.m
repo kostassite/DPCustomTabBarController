@@ -29,6 +29,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.tabbarHeight = 46;
         // Custom initialization
     }
     return self;
@@ -86,7 +87,7 @@
     [self.view addSubview:tabbarBackgroundView];
 
     
-    NSLayoutConstraint *heightConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:46];
+    NSLayoutConstraint *heightConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.tabbarHeight];
     NSLayoutConstraint *bottomConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
 
     [self.view addConstraint:heightConst];
@@ -135,7 +136,7 @@
     inAnimation = YES;
     
     AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+46);
+        UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+self.tabbarHeight);
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
     }completion:^(BOOL finished) {

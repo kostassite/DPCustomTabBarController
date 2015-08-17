@@ -34,5 +34,7 @@
 
 -(UIView*)tabbarBackgroundView;
 
+@property (nonatomic) NSInteger tabbarHeight;
+
 @property (nonatomic,weak) id<DPCustomTabBarControllerDelegate> customTabBarDelegate;
 @end
