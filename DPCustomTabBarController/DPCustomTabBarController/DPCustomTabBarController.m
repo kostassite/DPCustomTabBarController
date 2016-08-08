@@ -7,7 +7,6 @@
 //
 
 #import "DPCustomTabBarController.h"
-#import "AppDelegate.h"
 
 @interface DPCustomTabBarController (){
     UIView *tabbarBackgroundView;
@@ -74,12 +73,11 @@
 }
 
 -(void)addBackgroundView{
-    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     tabbarBackgroundView = [self.customTabBarDelegate backgroundViewForCustomTabBarController:self];
     CGRect oldFrame=tabbarBackgroundView.frame;
     oldFrame.origin.x=0;
-    oldFrame.origin.y=deleg.window.bounds.size.height-oldFrame.size.height;
+    oldFrame.origin.y=[self screenSize].height-oldFrame.size.height;
     oldFrame.size.width = self.view.frame.size.width;
     [tabbarBackgroundView setFrame:oldFrame];
     
@@ -135,8 +133,7 @@
     }
     inAnimation = YES;
     
-    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+self.tabbarHeight);
+        UIViewSetFrameHeight(self.view, [self screenSize].height+self.tabbarHeight);
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
     }completion:^(BOOL finished) {
@@ -149,8 +146,7 @@
         return;
     }
     inAnimation = YES;
-    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height);
+    UIViewSetFrameHeight(self.view, [self screenSize].height);
 
     [UIView animateWithDuration:0.2 animations:^{
         [self.view layoutIfNeeded];
@@ -160,14 +156,12 @@
 }
 
 -(void)setHeight:(NSInteger)height{
-    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    UIViewSetFrameHeight(self.view, deleg.window.bounds.size.height+height);
+    UIViewSetFrameHeight(self.view, [self screenSize].height+height);
 }
 
 -(void)endScroll{
-    AppDelegate *deleg=(AppDelegate*)[UIApplication sharedApplication].delegate;
 
-    if (self.view.frame.size.height<deleg.window.bounds.size.height+23) {
+    if (self.view.frame.size.height<[self screenSize].height+23) {
         [self showTabbar];
     }else{
         [self hideTabbar];
@@ -217,6 +211,17 @@
 }
 -(void)selectTabAtIndex:(NSInteger)index{
     [(UIButton*)[ tabbarBackgroundView viewWithTag:10+index] setHighlighted:YES];
+}
+
+#pragma mark - Private Helpers
+
+UIKIT_STATIC_INLINE void
+UIViewSetFrameHeight(UIView *view, CGFloat height) {
+    view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, height);
+}
+
+-(CGSize)screenSize{
+   return [[UIScreen mainScreen] bounds].size;
 }
 
 @end
