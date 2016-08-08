@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DPCustomTabBarController_Example' do
+  pod 'DPCustomTabBarController', :path => '../'
+
+  target 'DPCustomTabBarController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

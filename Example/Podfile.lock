@@ -1,0 +1,16 @@
+PODS:
+  - DPCustomTabBarController (0.1.0)
+
+DEPENDENCIES:
+  - DPCustomTabBarController (from `../`)
+
+EXTERNAL SOURCES:
+  DPCustomTabBarController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DPCustomTabBarController: de44ba33f55b88304d9111ba9f54352c93aeaf50
+
+PODFILE CHECKSUM: 50187bab1d0fed34784e76b3e3fa4b5d474b5ad4
+
+COCOAPODS: 1.0.0

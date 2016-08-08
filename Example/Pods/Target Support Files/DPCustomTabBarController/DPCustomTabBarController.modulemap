@@ -1,0 +1,6 @@
+framework module DPCustomTabBarController {
+  umbrella header "DPCustomTabBarController-umbrella.h"
+
+  export *
+  module * { export * }
+}
