@@ -125,6 +125,20 @@
     
 }
 
+#pragma mark - UITabBarController methods
+
+-(void)setSelectedViewController:(__kindof UIViewController *)selectedViewController{
+    [super setSelectedViewController:selectedViewController];
+    [self deselectAllTabs];
+    [self selectTabAtIndex:[self.viewControllers indexOfObject:selectedViewController]];
+}
+
+-(void)setSelectedIndex:(NSUInteger)selectedIndex{
+    [super setSelectedIndex:selectedIndex];
+    [self deselectAllTabs];
+    [self selectTabAtIndex:selectedIndex];
+}
+
 #pragma mark - Hide Show
 
 -(void)hideTabbar{
