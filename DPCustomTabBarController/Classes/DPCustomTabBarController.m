@@ -29,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.tabbarHeight = 46;
+        self.tabBar.translucent = NO;
         // Custom initialization
     }
     return self;
@@ -123,6 +124,13 @@
         [tabbarBackgroundView addSubview:btn];
     }
     
+}
+
+-(void)setTabbarHeight:(NSInteger)tabbarHeight{
+    _tabbarHeight = tabbarHeight;
+    CGRect frame = self.tabBar.frame;
+    frame.size.height = tabbarHeight;
+    [self.tabBar setFrame:frame];
 }
 
 #pragma mark - UITabBarController methods
