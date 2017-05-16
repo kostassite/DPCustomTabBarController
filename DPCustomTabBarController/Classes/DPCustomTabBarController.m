@@ -153,28 +153,31 @@
     if (inAnimation) {
         return;
     }
-    inAnimation = YES;
     
+    if (self.view.frame.size.height != [self screenSize].height+self.tabbarHeight) {
+        inAnimation = YES;
         UIViewSetFrameHeight(self.view, [self screenSize].height+self.tabbarHeight);
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view layoutIfNeeded];
-    }completion:^(BOOL finished) {
-        inAnimation = NO;
-    }];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.view layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            inAnimation = NO;
+        }];
+    }
 }
 
 -(void)showTabbar{
     if (inAnimation) {
         return;
     }
-    inAnimation = YES;
-    UIViewSetFrameHeight(self.view, [self screenSize].height);
-
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.view layoutIfNeeded];
-    }completion:^(BOOL finished) {
-        inAnimation = NO;
-    }];
+    if (self.view.frame.size.height != [self screenSize].height) {
+        inAnimation = YES;
+        UIViewSetFrameHeight(self.view, [self screenSize].height);
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.view layoutIfNeeded];
+        }completion:^(BOOL finished) {
+            inAnimation = NO;
+        }];
+    }
 }
 
 -(void)setHeight:(NSInteger)height{
