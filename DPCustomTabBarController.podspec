@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DPCustomTabBarController'
-  s.version          = '1.2.5'
+  s.version          = '1.3'
   s.summary          = 'A UITabBarController subclass with custom view and buttons'
 
 # This description is used to generate tags and improve search results.
