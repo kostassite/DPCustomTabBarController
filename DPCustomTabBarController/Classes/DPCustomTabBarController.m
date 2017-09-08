@@ -71,13 +71,7 @@
 #pragma mark - Create Custom TabBar
 
 -(void)removeDefaultTabBar{
-    
     [self.tabBar removeFromSuperview];
-    
-    //Just In case apple change the private API of UITabBarController
-    if ([self.view.subviews count] != 1 )
-		return;
-
 }
 
 -(void)addBackgroundView{
