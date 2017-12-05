@@ -88,7 +88,7 @@
 
     
     NSLayoutConstraint *heightConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:self.tabbarHeight];
-    NSLayoutConstraint *bottomConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *bottomConst = [NSLayoutConstraint constraintWithItem:tabbarBackgroundView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottomMargin multiplier:1 constant:0];
 
     [self.view addConstraint:heightConst];
     [self.view addConstraint:bottomConst];
@@ -155,9 +155,20 @@
         return;
     }
     
-    if (self.view.frame.size.height != [self screenSize].height+self.tabbarHeight) {
+    CGFloat extraInset = 20;
+    if ([self isIphoneX]) {
+        extraInset = 44;
+    }
+    
+    if (self.view.frame.size.height != [self screenSize].height+self.tabbarHeight + extraInset) {
         inAnimation = YES;
-        UIViewSetFrameHeight(self.view, [self screenSize].height+self.tabbarHeight);
+        
+        if (@available(iOS 11.0, *)) {
+            self.additionalSafeAreaInsets = UIEdgeInsetsMake(extraInset, 0, 0, 0);
+            UIViewSetFrameHeight(self.view, [self screenSize].height+self.tabbarHeight + extraInset);
+        }else{
+            UIViewSetFrameHeight(self.view, [self screenSize].height+self.tabbarHeight);
+        }
         [UIView animateWithDuration:0.3 animations:^{
             [self.view layoutIfNeeded];
         }completion:^(BOOL finished) {
@@ -170,9 +181,20 @@
     if (inAnimation) {
         return;
     }
-    if (self.view.frame.size.height != [self screenSize].height) {
+    
+    CGFloat safeAreaBottomInset = 0;
+    if (@available(iOS 11.0, *)) {
+        safeAreaBottomInset = self.view.safeAreaInsets.bottom;
+    }
+    
+    if (self.view.frame.size.height != [self screenSize].height - safeAreaBottomInset) {
         inAnimation = YES;
-        UIViewSetFrameHeight(self.view, [self screenSize].height);
+        if (@available(iOS 11.0, *)) {
+            self.additionalSafeAreaInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            UIViewSetFrameHeight(self.view, [self screenSize].height - safeAreaBottomInset);
+        }else{
+            UIViewSetFrameHeight(self.view, [self screenSize].height);
+        }
         [UIView animateWithDuration:0.2 animations:^{
             [self.view layoutIfNeeded];
         }completion:^(BOOL finished) {
@@ -248,6 +270,10 @@ UIViewSetFrameHeight(UIView *view, CGFloat height) {
 
 -(CGSize)screenSize{
    return [[UIScreen mainScreen] bounds].size;
+}
+
+-(BOOL)isIphoneX{
+    return ([self screenSize].height == 812);
 }
 
 @end
